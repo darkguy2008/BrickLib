@@ -37,6 +37,23 @@ namespace BrickLib.Config
             }
         }
 
+        public void Save(String filename)
+        {
+            using (StreamWriter sw = new StreamWriter(filename))
+                foreach (String k in INIFile.Keys)
+                {
+                    sw.WriteLine("[" + k + "]");
+                    foreach (KeyValuePair<String, String> kv in INIFile[k])
+                        sw.WriteLine(kv.Key + "=" + kv.Value);
+                    sw.WriteLine("");
+                }
+        }
+
+        public void AddSection(String name)
+        {
+            INIFile[name] = new List<KeyValuePair<String, String>>();
+        }
+
         public class ValueItem
         {
             public String Value;
@@ -54,6 +71,17 @@ namespace BrickLib.Config
         public class ValueItemCollection
         {
             private List<KeyValuePair<String, String>> _items = new List<KeyValuePair<String, String>>();
+
+            public void Add(String key, String value)
+            {
+                _items.Add(new KeyValuePair<String, String>(key, value));
+            }
+
+            public void AddArray(String key, IEnumerable<String> values)
+            {
+                foreach (String s in values)
+                    _items.Add(new KeyValuePair<String, String>(key, s));
+            }
 
             public ValueItemCollection(List<KeyValuePair<String, String>> items)
             {
