@@ -54,6 +54,14 @@ namespace BrickLib.Config
             INIFile[name] = new List<KeyValuePair<String, String>>();
         }
 
+        public int SectionCount
+        {
+            get
+            {
+                return INIFile.Keys.Count;
+            }
+        }
+
         public class ValueItem
         {
             public String Value;
@@ -81,6 +89,11 @@ namespace BrickLib.Config
             {
                 foreach (String s in values)
                     _items.Add(new KeyValuePair<String, String>(key, s));
+            }
+
+            public List<KeyValuePair<String, String>> AsKVP()
+            {
+                return _items;
             }
 
             public ValueItemCollection(List<KeyValuePair<String, String>> items)
