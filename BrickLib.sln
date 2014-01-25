@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrickLib.Extensibility", "BrickLib.Extensibility\BrickLib.Extensibility.csproj", "{655B0C97-569E-4838-9D3B-1CCB4AA1B14F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrickLib.WinAPI", "BrickLib.WinAPI\BrickLib.WinAPI.csproj", "{4681FFFA-29FE-463B-9BA4-4E3B595E6054}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{655B0C97-569E-4838-9D3B-1CCB4AA1B14F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{655B0C97-569E-4838-9D3B-1CCB4AA1B14F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{655B0C97-569E-4838-9D3B-1CCB4AA1B14F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4681FFFA-29FE-463B-9BA4-4E3B595E6054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4681FFFA-29FE-463B-9BA4-4E3B595E6054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4681FFFA-29FE-463B-9BA4-4E3B595E6054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4681FFFA-29FE-463B-9BA4-4E3B595E6054}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

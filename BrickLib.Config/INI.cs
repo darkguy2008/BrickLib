@@ -80,6 +80,22 @@ namespace BrickLib.Config
         {
             private List<KeyValuePair<String, String>> _items = new List<KeyValuePair<String, String>>();
 
+            public void Set(String key, String value)
+            {
+                bool bSet = false;
+                for (int i = 0; i < _items.Count; i++)
+                {
+                    if (_items[i].Key.ToLowerInvariant().Trim() == key.ToLowerInvariant().Trim())
+                    {
+                        bSet = true;
+                        _items[i] = new KeyValuePair<String, String>(key, value);
+                        break;
+                    }
+                }
+                if (!bSet)
+                    Add(key, value);
+            }
+
             public void Add(String key, String value)
             {
                 _items.Add(new KeyValuePair<String, String>(key, value));
@@ -101,15 +117,35 @@ namespace BrickLib.Config
                 _items = items;
             }
 
+            public bool ContainsKey(String key)
+            {
+                bool rv = false;
+                foreach (KeyValuePair<String, String> kvp in _items)
+                    if (kvp.Key.ToLowerInvariant().Trim() == key.ToLowerInvariant().Trim())
+                    {
+                        rv = true;
+                        break;
+                    }
+                return rv;
+            }
+
             public ValueItem this[String key]
             {
                 get {
                     ValueItem rv = new ValueItem();
-                    List<String> li = _items.Where(x => x.Key.ToLowerInvariant().Trim() == key.ToLowerInvariant().Trim()).Select(x => x.Value).ToList();
-                    if (li.Count > 1)
-                        rv.Array = li.ToArray();
+                    if (_items.Where(x => x.Key.ToLowerInvariant().Trim() == key.ToLowerInvariant().Trim()).ToList().Count == 0)
+                    {
+                        Add(key, String.Empty);
+                        rv = this[key];
+                    }
                     else
-                        rv.Value = li.Single();
+                    {
+                        List<String> li = _items.Where(x => x.Key.ToLowerInvariant().Trim() == key.ToLowerInvariant().Trim()).Select(x => x.Value).ToList();
+                        if (li.Count > 1)
+                            rv.Array = li.ToArray();
+                        else
+                            rv.Value = li.Single();
+                    }
                     return rv;
                 }
             }
